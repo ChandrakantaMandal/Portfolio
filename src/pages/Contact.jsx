@@ -41,8 +41,8 @@ const contactInfo = [
   {
     icon: <FaPhone />,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    link: "tel:+15551234567",
+    value: "+91 9937783602",
+    link: "tel:+91 9937783602",
     color: "#3de58f",
   },
   {
