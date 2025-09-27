@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* CSS Variables for theming */
+:root {
+  --color-primary: #0e1116;
+  --color-secondary: #1a1f25;
+  --color-tertiary: #2a313c;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #a0aec0;
+  --color-accent: #3de58f;
+  --color-accent-hover: #2bc76a;
+  --color-border: #374151;
+  --color-card: #1a1f25;
+  --color-navbar: rgba(14, 17, 22, 0.95);
+  --color-scrollbar-track: #1a1f25;
+  --color-scrollbar-thumb: #3de58f;
+}
+
+.light {
+  --color-primary: #ffffff;
+  --color-secondary: #f8fafc;
+  --color-tertiary: #e2e8f0;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
+  --color-accent: #3de58f;
+  --color-accent-hover: #2bc76a;
+  --color-border: #e2e8f0;
+  --color-card: #ffffff;
+  --color-navbar: rgba(255, 255, 255, 0.95);
+  --color-scrollbar-track: #f1f5f9;
+  --color-scrollbar-thumb: #3de58f;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
