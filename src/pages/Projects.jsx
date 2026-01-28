@@ -8,7 +8,7 @@ const projects = [
     tech: ["React", "Framer Motion", "Tailwind"],
     successRate: 90,
     github: "https://github.com/yourusername/portfolio",
-    live: "https://portfolio-28.vercele.app",
+    live: "https://yourportfolio.com",
   },
   {
     title: "Authentication",
