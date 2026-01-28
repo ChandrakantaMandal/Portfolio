@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
 
-// Skeleton loader component
+
 const SkeletonLoader = ({
   className = "",
   width = "100%",
@@ -29,7 +29,6 @@ const SkeletonLoader = ({
   );
 };
 
-// Skeleton card component
 const SkeletonCard = () => {
   const { colors } = useTheme();
 
@@ -53,7 +52,7 @@ const SkeletonCard = () => {
   );
 };
 
-// Enhanced loading page with skeleton loaders
+
 const LoadingPage = () => {
   const { colors } = useTheme();
 
@@ -62,7 +61,6 @@ const LoadingPage = () => {
       className="min-h-screen transition-colors duration-300"
       style={{ backgroundColor: colors.primary }}
     >
-      {/* Loading header skeleton */}
       <motion.div
         className="fixed top-0 left-0 right-0 z-50 p-4"
         style={{ backgroundColor: colors.navbar }}
@@ -84,9 +82,9 @@ const LoadingPage = () => {
         </div>
       </motion.div>
 
-      {/* Main loading content */}
+     
       <div className="pt-20 px-6 md:px-12 max-w-6xl mx-auto">
-        {/* Hero section skeleton */}
+       
         <motion.div
           className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12"
           initial={{ opacity: 0 }}
@@ -128,7 +126,7 @@ const LoadingPage = () => {
           </div>
         </motion.div>
 
-        {/* Projects section skeleton */}
+       
         <motion.div
           className="py-16"
           initial={{ opacity: 0 }}

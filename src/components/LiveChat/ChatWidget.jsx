@@ -1,18 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import {
   FaComments,
-  FaTimes,
-  FaPaperPlane,
-  FaUser,
-  FaRobot,
-  FaMinus,
   FaExpand,
-  FaSmile,
-  FaPaperclip,
+  FaMinus,
+  FaPaperPlane,
+  FaRobot,
+  FaTimes,
+  FaUser
 } from "react-icons/fa";
-import { useTheme } from "../../contexts/ThemeContext";
 import { v4 as uuidv4 } from "uuid";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const ChatWidget = () => {
   const { colors } = useTheme();
@@ -26,7 +24,6 @@ const ChatWidget = () => {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Initialize chat with welcome message
   useEffect(() => {
     const initializeChat = () => {
       const savedMessages = localStorage.getItem("chatMessages");
@@ -41,7 +38,7 @@ const ChatWidget = () => {
         }
       }
       
-      // Always ensure welcome message exists
+
       if (initialMessages.length === 0) {
         const welcomeMessage = {
           id: uuidv4(),
@@ -60,19 +57,18 @@ const ChatWidget = () => {
     initializeChat();
   }, []);
 
-  // Auto-scroll to bottom when new messages arrive
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  // Scroll to bottom when chat opens
   useEffect(() => {
     if (isOpen && !isMinimized) {
       scrollToBottom();
     }
   }, [isOpen, isMinimized]);
 
-  // Update unread count when chat is closed
+  
   useEffect(() => {
     if (!isOpen && messages.length > 1) {
       const lastMessage = messages[messages.length - 1];
@@ -130,7 +126,7 @@ const ChatWidget = () => {
     setInputMessage("");
     setIsTyping(true);
 
-    // Simulate typing delay
+  
     setTimeout(() => {
       const botResponse = {
         id: uuidv4(),
@@ -157,7 +153,7 @@ const ChatWidget = () => {
     if (!isOpen) {
       setIsMinimized(false);
       
-      // Safety check: ensure welcome message exists when opening chat
+  
       if (messages.length === 0) {
         const welcomeMessage = {
           id: uuidv4(),
@@ -269,7 +265,7 @@ const ChatWidget = () => {
             className="fixed bottom-24 right-6 w-80 rounded-2xl shadow-2xl overflow-hidden z-40"
             style={{ backgroundColor: colors.card }}
           >
-            {/* Chat Header */}
+            
             <div
               className="p-4 flex items-center justify-between"
               style={{ backgroundColor: colors.accent }}
@@ -326,7 +322,7 @@ const ChatWidget = () => {
                       />
                     ))}
 
-                    {/* Typing Indicator */}
+                  
                     {isTyping && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -359,7 +355,7 @@ const ChatWidget = () => {
                   </div>
                 </div>
 
-                {/* Quick Replies */}
+            
                 {messages.length === 1 && (
                   <div className="px-4 pb-2">
                     <div

@@ -1,39 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes, FaSearch } from "react-icons/fa";
-import { scrollToSection, getCurrentSection } from "../utils/scrollUtils";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 import ThemeToggle from "./ThemeToggle";
-
-
-
 
 const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
-  { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const { colors } = useTheme();
-  const MotionDiv = motion.div;
 
 
-  // Handle mobile menu navigation
   const handleMobileNavClick = (href) => {
-    scrollToSection(href);
+    const element = document.getElementById(href.replace("#", ""));
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      console.log("Element not found for:", href);
+    }
     setIsMobileMenuOpen(false);
-  };
-
-  // Add this function to toggle admin login
-  const handleLogoDoubleClick = () => {
-    setShowAdminLogin(prev => !prev);
   };
 
   return (
@@ -47,19 +39,15 @@ const Navbar = () => {
         color: colors.text.primary,
       }}
     >
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center">
-        {/* Logo with double-click handler */}
-     
-          <motion.h1
-            className="text-2xl font-extrabold text-[#3de58f] cursor-pointer"
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Next Hub
-          </motion.h1>
-
-        {/* Admin Login Modal */}
+      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <motion.h1
+          className="text-2xl font-extrabold text-[#3de58f] cursor-pointer"
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Next DEV
+        </motion.h1>
         <AnimatePresence>
           {showAdminLogin && (
             <motion.div
@@ -73,11 +61,6 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Spacer to push navigation to the right */}
-        <div className="flex-1"></div>
-
-        {/* Desktop Navigation - moved further to the right */}
         <ul className="hidden md:flex space-x-10 mr-8">
           {navLinks.map((link, index) => (
             <motion.li
@@ -87,7 +70,19 @@ const Navbar = () => {
               transition={{ delay: 0.4 + index * 0.1 }}
             >
               <button
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => {
+                  const element = document.getElementById(
+                    link.href.replace("#", "")
+                  );
+                  if (element) {
+                    element.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  } else {
+                    console.log("Element not found for:", link.href);
+                  }
+                }}
                 className="transition duration-300 relative font-medium"
                 style={{
                   color:
@@ -116,11 +111,7 @@ const Navbar = () => {
             </motion.li>
           ))}
         </ul>
-
-        {/* Search, Theme Toggle & Mobile Menu - positioned at the far right */}
         <div className="flex items-center gap-4">
-
-          {/* Theme Toggle - moved further to the right */}
           <div className="mr-4">
             <ThemeToggle />
           </div>
@@ -221,6 +212,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

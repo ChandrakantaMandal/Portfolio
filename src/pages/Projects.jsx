@@ -8,7 +8,7 @@ const projects = [
     tech: ["React", "Framer Motion", "Tailwind"],
     successRate: 90,
     github: "https://github.com/yourusername/portfolio",
-    live: "https://yourportfolio.com",
+    live: "https://portfolio-28.vercele.app",
   },
   {
     title: "Authentication",
@@ -24,7 +24,7 @@ const projects = [
     tech: ["React", "Tailwind", "Redux Toolkit"],
     successRate: 95,
     github: "https://github.com/ChandrakantaMandal/Myntra-Clone-Frontend-only",
-    live: "https://myecommercestore.com",
+    live: "",
   },
   {
     title: "Hackathon-Project-Hub",
@@ -33,7 +33,7 @@ const projects = [
     tech: ["React","Tailwind","Node.js", "Express"," MongoDB"],
     successRate: 80,
     github: "https://github.com/ChandrakantaMandal/Hackathon-Project-Hub",
-    live: "https://blogplatform.example.com",
+    live: "",
   },
   {
     title: "Task Manager",
@@ -42,7 +42,7 @@ const projects = [
     tech: ["React","Tailwind","Node.js", "Express"," MongoDB"],
     successRate: 92,
     github: "https://github.com/ChandrakantaMandal/Task-Manager",
-    live: "https://taskmanager.example.com",
+    live: "",
   },
 ];
 
@@ -60,7 +60,6 @@ const Projects = () => {
       }}
     >
       <div className="max-w-6xl mx-auto text-center">
-        {/* Header */}
         <MotionDiv
           initial={{ x: -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
@@ -75,7 +74,6 @@ const Projects = () => {
           </p>
         </MotionDiv>
 
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-12">
           {projects.map((project, index) => (
             <MotionDiv
@@ -112,7 +110,7 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Progress Bar */}
+              
               <div>
                 <div className="flex justify-between mb-1">
                   <span className="font-semibold text-[#3de58f]">

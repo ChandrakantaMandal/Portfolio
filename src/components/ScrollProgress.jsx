@@ -17,7 +17,6 @@ const ScrollProgress = () => {
       const scrolled = scrollPx / winHeightPx;
       setScrollProgress(scrolled);
 
-      // Determine current section
       const sections = ["hero", "about", "projects", "contact"];
       const scrollPosition = window.scrollY + 100;
 
@@ -35,7 +34,7 @@ const ScrollProgress = () => {
       }
     };
 
-    // Calculate estimated reading time
+    
     const calculateReadingTime = () => {
       const text = document.body.innerText || "";
       const wordsPerMinute = 200;
@@ -53,7 +52,7 @@ const ScrollProgress = () => {
 
   return (
     <>
-      {/* Main progress bar */}
+    
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 z-50 transition-colors duration-300"
         style={{ backgroundColor: colors.border }}
@@ -69,7 +68,6 @@ const ScrollProgress = () => {
           }}
           transition={{ duration: 0.1 }}
         >
-          {/* Glowing effect */}
           <motion.div
             className="absolute top-0 right-0 w-4 h-full"
             style={{
@@ -88,7 +86,7 @@ const ScrollProgress = () => {
         </motion.div>
       </motion.div>
 
-      {/* Circular Progress Bar */}
+    
       <motion.div
         className="fixed top-20 right-6 z-50"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -99,7 +97,7 @@ const ScrollProgress = () => {
         transition={{ duration: 0.3 }}
       >
         <div className="relative w-16 h-16">
-          {/* Background circle with backdrop blur */}
+          
           <div 
             className="absolute inset-0 rounded-full backdrop-blur-md border shadow-lg"
             style={{
@@ -108,9 +106,8 @@ const ScrollProgress = () => {
             }}
           />
           
-          {/* SVG Progress Circle */}
           <svg className="w-16 h-16 transform -rotate-90 absolute inset-0" viewBox="0 0 64 64">
-            {/* Background circle */}
+            
             <circle
               cx="32"
               cy="32"
@@ -120,7 +117,7 @@ const ScrollProgress = () => {
               fill="none"
               opacity="0.3"
             />
-            {/* Progress circle */}
+           
             <motion.circle
               cx="32"
               cy="32"
@@ -140,7 +137,6 @@ const ScrollProgress = () => {
             />
           </svg>
           
-          {/* Center Icon */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
               animate={{ 
@@ -162,7 +158,7 @@ const ScrollProgress = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                {/* Book/Reading icon */}
+              
                 <path d="M2 6h7l2 2h9a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/>
                 <path d="M2 6v12a2 2 0 0 0 2 2h16"/>
                 <motion.path 
@@ -177,7 +173,7 @@ const ScrollProgress = () => {
             </motion.div>
           </div>
           
-          {/* Progress percentage tooltip */}
+         
           <motion.div
             className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded text-xs font-medium backdrop-blur-sm"
             style={{
@@ -197,7 +193,7 @@ const ScrollProgress = () => {
         </div>
       </motion.div>
       
-      {/* Section info sidebar */}
+     
       <motion.div
         className="fixed top-20 right-24 z-40 px-3 py-2 rounded-lg backdrop-blur-sm"
         style={{

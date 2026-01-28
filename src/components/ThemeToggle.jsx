@@ -17,7 +17,7 @@ const ThemeToggle = ({ className = "" }) => {
       whileHover={{ scale: 1.05 }}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
-      {/* Toggle Background - Animated positioning */}
+      
       <motion.div
         className={`absolute w-5 h-5 rounded-full transition-colors duration-300 shadow-sm ${
           isDark ? "bg-[#3de58f]" : "bg-white"
@@ -36,7 +36,7 @@ const ThemeToggle = ({ className = "" }) => {
         }}
       />
 
-      {/* Sun Icon */}
+      
       <motion.div
         className="absolute left-2 top-1.5 w-4 h-4 flex items-center justify-center"
         animate={{
@@ -48,7 +48,7 @@ const ThemeToggle = ({ className = "" }) => {
         <FaSun className="text-yellow-500 text-sm" />
       </motion.div>
 
-      {/* Moon Icon */}
+      
       <motion.div
         className="absolute right-2 top-1.5 w-4 h-4 flex items-center justify-center"
         animate={{

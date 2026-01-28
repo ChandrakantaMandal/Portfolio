@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import ChatWidget from './ChatWidget';
-import ChatNotification from './ChatNotification';
-import { ChatProvider } from '../../contexts/ChatContext';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import ChatWidget from "./ChatWidget";
+import ChatNotification from "./ChatNotification";
+import { ChatProvider } from "../../contexts/ChatContext";
 
 const ChatSystem = () => {
   const [showNotification, setShowNotification] = useState(true);
@@ -10,22 +10,20 @@ const ChatSystem = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
-    // Track user interaction
     const handleUserInteraction = () => {
       if (!hasInteracted) {
         setHasInteracted(true);
       }
     };
 
-    // Listen for scroll, click, or key events
-    window.addEventListener('scroll', handleUserInteraction);
-    window.addEventListener('click', handleUserInteraction);
-    window.addEventListener('keydown', handleUserInteraction);
+    window.addEventListener("scroll", handleUserInteraction);
+    window.addEventListener("click", handleUserInteraction);
+    window.addEventListener("keydown", handleUserInteraction);
 
     return () => {
-      window.removeEventListener('scroll', handleUserInteraction);
-      window.removeEventListener('click', handleUserInteraction);
-      window.removeEventListener('keydown', handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("keydown", handleUserInteraction);
     };
   }, [hasInteracted]);
 
@@ -41,12 +39,9 @@ const ChatSystem = () => {
   return (
     <ChatProvider>
       <div className="chat-system">
-        {/* Chat Widget */}
         <ChatWidget />
-        
-        {/* Chat Notification */}
-        {showNotification && !chatOpened && hasInteracted && (
-          <ChatNotification 
+       {showNotification && !chatOpened && hasInteracted && (
+          <ChatNotification
             onOpen={handleNotificationOpen}
             onDismiss={handleNotificationDismiss}
           />

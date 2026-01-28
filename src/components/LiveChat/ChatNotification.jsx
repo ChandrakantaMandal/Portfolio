@@ -8,7 +8,7 @@ const ChatNotification = ({ onOpen, onDismiss }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Show notification after 10 seconds
+   
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 10000);
@@ -66,7 +66,7 @@ const ChatNotification = ({ onOpen, onDismiss }) => {
             </button>
           </div>
           
-          {/* Pulse animation */}
+      
           <motion.div
             className="absolute -inset-1 rounded-xl opacity-20"
             style={{ backgroundColor: colors.accent }}

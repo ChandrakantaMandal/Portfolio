@@ -18,7 +18,7 @@ export const ChatProvider = ({ children }) => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [chatHistory, setChatHistory] = useState([]);
 
-  // Initialize chat with welcome message
+
   useEffect(() => {
     const savedMessages = localStorage.getItem("chatMessages");
     if (savedMessages) {

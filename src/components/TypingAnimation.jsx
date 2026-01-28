@@ -29,7 +29,7 @@ const TypingAnimation = ({
       }
 
       if (isDeleting) {
-        // Deleting characters
+       
         setCurrentText(fullText.substring(0, currentText.length - 1));
         
         if (currentText === '') {
@@ -37,7 +37,6 @@ const TypingAnimation = ({
           setCurrentTextIndex((prev) => (prev + 1) % texts.length);
         }
       } else {
-        // Typing characters
         setCurrentText(fullText.substring(0, currentText.length + 1));
         
         if (currentText === fullText) {
@@ -70,7 +69,7 @@ const TypingAnimation = ({
   );
 };
 
-// Enhanced typing animation with multiple effects
+
 const EnhancedTypingAnimation = ({ 
   prefix = "",
   texts = [],
@@ -89,7 +88,7 @@ const EnhancedTypingAnimation = ({
 
   return (
     <div className={`${className}`}>
-      {/* Prefix text with fade-in animation */}
+      
       <motion.span
         className={textClassName}
         initial={{ opacity: 0, y: 20 }}
@@ -99,7 +98,7 @@ const EnhancedTypingAnimation = ({
         {prefix}
       </motion.span>
 
-      {/* Typing animation */}
+     
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
@@ -115,7 +114,7 @@ const EnhancedTypingAnimation = ({
         />
       </motion.span>
 
-      {/* Suffix text */}
+    
       <motion.span
         className={textClassName}
         initial={{ opacity: 0, y: 20 }}
@@ -128,7 +127,7 @@ const EnhancedTypingAnimation = ({
   );
 };
 
-// Word-by-word reveal animation
+
 const WordRevealAnimation = ({ 
   text = "",
   className = "",
@@ -158,7 +157,7 @@ const WordRevealAnimation = ({
   );
 };
 
-// Character-by-character reveal animation
+
 const CharacterRevealAnimation = ({ 
   text = "",
   className = "",

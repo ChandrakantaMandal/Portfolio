@@ -12,7 +12,7 @@ import ScrollProgress from "./components/ScrollProgress";
 import ThemeNotification from "./components/ThemeNotification";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
-// import usePageTracking from "./hooks/usePageTracking"; // Temporarily disabled
+
 
 const Hero = lazy(() => import("./pages/Hero"));
 const About = lazy(() => import("./pages/About"));
@@ -20,9 +20,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Projects = lazy(() => import("./pages/Projects"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Component to handle page tracking
 const AppContent = () => {
-  
   return (
     <>
       <ParticleBackground />

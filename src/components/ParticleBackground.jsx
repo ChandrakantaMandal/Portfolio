@@ -8,7 +8,6 @@ const ParticleBackground = () => {
   const animationRef = useRef();
   const lastFrameTime = useRef(0);
   
-  // Optimize based on device capabilities
   const config = useMemo(() => {
     const isMobile = window.innerWidth < 768;
     const isLowEnd = navigator.hardwareConcurrency <= 4;
@@ -67,7 +66,7 @@ const ParticleBackground = () => {
       }
     }
 
-    // Initialize particles
+  
     particlesRef.current = [];
     for (let i = 0; i < config.particleCount; i++) {
       particlesRef.current.push(new Particle());

@@ -16,18 +16,17 @@ import { useTheme } from "../contexts/ThemeContext";
 import emailjs from "@emailjs/browser";
 import AnimatedSection from "../components/AnimatedSection";
 
-// EmailJS configuration - You need to set these up in your EmailJS dashboard
 const EMAILJS_CONFIG = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID", 
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
 };
-
-// Check if EmailJS is properly configured
 const isEmailJSConfigured = () => {
-  return EMAILJS_CONFIG.serviceId !== "YOUR_SERVICE_ID" && 
-         EMAILJS_CONFIG.templateId !== "YOUR_TEMPLATE_ID" && 
-         EMAILJS_CONFIG.publicKey !== "YOUR_PUBLIC_KEY";
+  return (
+    EMAILJS_CONFIG.serviceId &&
+    EMAILJS_CONFIG.templateId &&
+    EMAILJS_CONFIG.publicKey
+  );
 };
 
 const contactInfo = [
@@ -91,7 +90,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+  const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
 
   // Initialize EmailJS
@@ -101,7 +100,6 @@ const Contact = () => {
     }
   }, []);
 
-  // Form validation
   const validateForm = () => {
     const newErrors = {};
 
@@ -129,7 +127,6 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -137,7 +134,6 @@ const Contact = () => {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -146,7 +142,6 @@ const Contact = () => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -158,12 +153,12 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // Check if EmailJS is configured
       if (!isEmailJSConfigured()) {
-        throw new Error("EmailJS is not configured. Please check your environment variables.");
+        throw new Error(
+          "EmailJS is not configured. Please check your environment variables."
+        );
       }
 
-      // Send email using EmailJS
       const result = await emailjs.sendForm(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
@@ -174,7 +169,6 @@ const Contact = () => {
       console.log("Email sent successfully:", result);
       setSubmitStatus("success");
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -182,23 +176,23 @@ const Contact = () => {
         message: "",
       });
 
-      // Clear success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
     } catch (error) {
       console.error("Email sending failed:", error);
-      
-      // Set more specific error message
+
       if (error.text && error.text.includes("template ID not found")) {
         setSubmitStatus("template_error");
-      } else if (error.message && error.message.includes("EmailJS is not configured")) {
+      } else if (
+        error.message &&
+        error.message.includes("EmailJS is not configured")
+      ) {
         setSubmitStatus("config_error");
       } else {
         setSubmitStatus("error");
       }
 
-      // Clear error message after 8 seconds (longer for config errors)
       setTimeout(() => {
         setSubmitStatus(null);
       }, 8000);
@@ -214,7 +208,7 @@ const Contact = () => {
       style={{ backgroundColor: colors.primary }}
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+
         <AnimatedSection animation="fadeIn" className="text-center mb-16">
           <h2
             className="text-4xl md:text-5xl font-bold mb-6"
@@ -232,7 +226,7 @@ const Contact = () => {
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Information */}
+     
           <AnimatedSection animation="slideLeft" className="space-y-8">
             <div>
               <h3
@@ -248,7 +242,7 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Contact Info Cards */}
+            
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.a
@@ -282,7 +276,7 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Social Links */}
+         
             <div>
               <h4
                 className="text-lg font-semibold mb-4"
@@ -317,7 +311,7 @@ const Contact = () => {
             </div>
           </AnimatedSection>
 
-          {/* Contact Form */}
+       
           <AnimatedSection animation="slideRight">
             <div
               className="p-8 rounded-2xl shadow-xl"
@@ -330,7 +324,7 @@ const Contact = () => {
                 Send Message
               </h3>
 
-              {/* Status Messages */}
+           
               {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -369,8 +363,12 @@ const Contact = () => {
                 >
                   <FaExclamationTriangle />
                   <span>
-                    Email service configuration issue. Please contact me directly at{" "}
-                    <a href="mailto:chandrakantamandal28@gmail.com" className="underline">
+                    Email service configuration issue. Please contact me
+                    directly at{" "}
+                    <a
+                      href="mailto:chandrakantamandal28@gmail.com"
+                      className="underline"
+                    >
                       chandrakantamandal28@gmail.com
                     </a>
                   </span>
@@ -386,8 +384,12 @@ const Contact = () => {
                 >
                   <FaExclamationTriangle />
                   <span>
-                    Email service is not configured. Please reach out directly at{" "}
-                    <a href="mailto:chandrakantamandal28@gmail.com" className="underline">
+                    Email service is not configured. Please reach out directly
+                    at{" "}
+                    <a
+                      href="mailto:chandrakantamandal28@gmail.com"
+                      className="underline"
+                    >
                       chandrakantamandal28@gmail.com
                     </a>
                   </span>
@@ -395,7 +397,7 @@ const Contact = () => {
               )}
 
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
+                
                 <div>
                   <label
                     className="block text-sm font-medium mb-2"
@@ -431,7 +433,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Email Field */}
+                
                 <div>
                   <label
                     className="block text-sm font-medium mb-2"
@@ -467,7 +469,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Subject Field */}
+              
                 <div>
                   <label
                     className="block text-sm font-medium mb-2"
@@ -503,7 +505,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Message Field */}
+               
                 <div>
                   <label
                     className="block text-sm font-medium mb-2"
@@ -545,7 +547,7 @@ const Contact = () => {
                   </p>
                 </div>
 
-                {/* Submit Button */}
+               
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}

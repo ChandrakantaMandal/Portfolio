@@ -7,58 +7,31 @@ import {
   CharacterRevealAnimation,
 } from "../components/TypingAnimation";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
 const Hero = () => {
   const { colors } = useTheme();
-  const MotionDiv = motion.div;
 
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-between px-8 md:px-20 py-16 transition-colors duration-300"
+      className="min-h-[50vh] sm:min-h-screen flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center px-2 sm:px-4 md:px-8 lg:px-20 pt-20 sm:pt-24 pb-1 sm:pb-2 md:pb-6 lg:pb-16 gap-2 sm:gap-4 lg:gap-12"
       style={{
         backgroundColor: colors.primary,
         color: colors.text.primary,
       }}
     >
-      {/* Left Content */}
-      <MotionDiv
-        className="max-w-xl"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        {/* Main heading with word reveal animation */}
-        <motion.div
-          className="text-4xl md:text-5xl font-bold mb-2"
-          custom={1}
-          variants={fadeUp}
-        >
+
+      <div className="w-full max-w-full px-2 sm:px-4 md:px-0 break-words overflow-hidden">
+       
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-0.5 break-words max-w-full">
           <WordRevealAnimation
             text="Hi, I'm Chandrakanta!"
             delay={0.5}
             staggerDelay={0.15}
           />
-        </motion.div>
+        </div>
 
-        {/* Subtitle with enhanced typing animation */}
-        <motion.div
-          className="text-3xl md:text-4xl font-extrabold mb-6"
-          custom={2}
-          variants={fadeUp}
-        >
+       
+        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-0.5 text-gray-600 dark:text-gray-300 break-words max-w-full">
           <EnhancedTypingAnimation
             prefix="A Passionate "
             texts={[
@@ -70,68 +43,64 @@ const Hero = () => {
             ]}
             className="leading-tight"
           />
-        </motion.div>
+        </div>
 
-        {/* Description with character reveal animation */}
-        <motion.div
-          className="text-gray-400 leading-relaxed"
-          custom={3}
-          variants={fadeUp}
-        >
+       
+        <div className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-400 leading-relaxed break-words max-w-full">
           <CharacterRevealAnimation
             text="Welcome to my portfolio! I specialize in creating sleek, efficient websites that not only look great but also perform seamlessly. Whether you need a personal blog, an e-commerce platform, or a business website, I bring your ideas to life with clean code and attention to detail."
             delay={2.5}
             staggerDelay={0.02}
           />
-        </motion.div>
+        </div>
 
-        {/* Buttons */}
-        <MotionDiv className="flex flex-wrap gap-4 mt-8" custom={4} variants={fadeUp}>
-          <ResumeDownload 
-            variant="primary" 
-            text="Download Resume" 
+     
+        <div className="flex flex-col gap-2 sm:gap-3 mt-2 sm:mt-4">
+          <ResumeDownload
+            variant="primary"
+            text="Download Resume"
             fileName="Chandrakanta_Mandal_Resume.pdf"
           />
-          
+
           <motion.a
             href="#contact"
-            className="px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:scale-105"
+            className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:scale-105 text-xs sm:text-sm md:text-base w-full sm:w-auto text-center"
             style={{
               color: colors.accent,
               borderColor: colors.accent,
-              backgroundColor: "transparent"
+              backgroundColor: "transparent",
             }}
-            whileHover={{ 
+            whileHover={{
               backgroundColor: colors.accent,
               color: colors.primary,
-              scale: 1.05
+              scale: 1.05,
             }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" });
             }}
           >
             Let's Talk
           </motion.a>
-        </MotionDiv>
-      </MotionDiv>
-
-      {/* Right Content - Image */}
-      <MotionDiv
-        className="mt-10 lg:mt-0 relative"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-      >
-        <div className="p-2 border-4 border-[#3de58f] rounded-[2rem] shadow-lg hover:scale-105 transition-transform duration-500">
-          <img
-            src=" /Photo.jpeg"
-            alt="Chandara"
-            className="w-[300px] h-[300px] object-cover rounded-xl"
-          />
         </div>
-      </MotionDiv>
+      </div>
+
+    
+      <div className="relative w-full max-w-[208px] sm:max-w-[240px] md:max-w-[288px] lg:max-w-[352px] xl:max-w-[416px] mb-0">
+        <img
+          src="/Photo.jpeg"
+          alt="Chandara"
+          className="w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-88 lg:h-88 xl:w-[104] xl:h-[104] object-cover rounded-xl mx-auto"
+          style={{
+            boxShadow:
+              "0 0 20px rgba(61, 229, 143, 0.3), 0 0 40px rgba(61, 229, 143, 0.1)",
+            border: "2px solid rgba(61, 229, 143, 0.2)",
+          }}
+        />
+      </div>
     </section>
   );
 };

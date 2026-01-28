@@ -3,7 +3,7 @@ import { FaDownload, FaFilePdf } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 
 const ResumeDownload = ({ 
-  variant = "primary", // primary, secondary, navbar
+  variant = "primary", 
   className = "",
   showIcon = true,
   showText = true,
@@ -13,7 +13,7 @@ const ResumeDownload = ({
   const { colors } = useTheme();
 
   const handleDownload = () => {
-    // Track download event (optional analytics)
+    
     try {
       if (window.gtag) {
         window.gtag('event', 'resume_download', {
@@ -25,9 +25,9 @@ const ResumeDownload = ({
       console.log('Analytics not available');
     }
 
-    // Create download link
+
     const link = document.createElement('a');
-    link.href = '/assets/resume.pdf'; // This should be in your public/assets folder
+    link.href = '/assets/resume.pdf'; 
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
@@ -106,7 +106,7 @@ const ResumeDownload = ({
       )}
       {showText && <span>{text}</span>}
       
-      {/* Optional PDF icon */}
+      
       {variant === "secondary" && (
         <motion.span
           initial={{ scale: 0 }}

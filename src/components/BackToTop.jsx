@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import { scrollToTop } from "../utils/scrollUtils";
 import { useTheme } from "../contexts/ThemeContext";
+import { scrollToTop } from "../utils/scrollUtils";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,7 +49,6 @@ const BackToTop = () => {
             }}
             aria-label="Back to top"
           >
-            {/* Progress Ring */}
             <svg
               className="absolute inset-0 w-full h-full transform -rotate-90"
               viewBox="0 0 100 100"
@@ -81,7 +80,6 @@ const BackToTop = () => {
               />
             </svg>
 
-            {/* Arrow Icon */}
             <div className="relative z-10 flex items-center justify-center">
               <motion.div
                 animate={{ y: [0, -2, 0] }}
@@ -95,7 +93,6 @@ const BackToTop = () => {
               </motion.div>
             </div>
 
-            {/* Tooltip */}
             <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
               Back to top ({Math.round(scrollProgress)}%)
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>

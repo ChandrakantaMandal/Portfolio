@@ -13,15 +13,14 @@ const ThemeNotification = () => {
   };
 
   useEffect(() => {
-    // Only show notification if theme actually changed
+   
     if (isDark !== previousTheme) {
       setShowNotification(true);
       setPreviousTheme(isDark);
 
-      // Hide notification after 3 seconds
       const timer = setTimeout(() => {
         hideNotification();
-      }, 3000);
+      }, 2000);
 
       return () => {
         clearTimeout(timer);
@@ -29,7 +28,7 @@ const ThemeNotification = () => {
     }
   }, [isDark, previousTheme]);
 
-  // Also hide notification when component unmounts
+
   useEffect(() => {
     return () => {
       setShowNotification(false);
@@ -67,7 +66,7 @@ const ThemeNotification = () => {
             color: isDark ? "#ffffff" : "#1a202c",
           }}
         >
-          {/* Theme Icon */}
+          
           <motion.div
             initial={{ rotate: -180 }}
             animate={{ rotate: 0 }}
@@ -82,7 +81,7 @@ const ThemeNotification = () => {
             )}
           </motion.div>
 
-          {/* Text */}
+         
           <div className="flex flex-col flex-1">
             <div className="flex items-center gap-2">
               <span className="font-medium text-sm">
@@ -93,10 +92,9 @@ const ThemeNotification = () => {
             <span className="text-xs opacity-70">Theme preference saved</span>
           </div>
 
-          {/* Dismiss Button */}
           <motion.button
             onClick={(e) => {
-              e.stopPropagation(); // Prevent triggering the container click
+              e.stopPropagation();
               hideNotification();
             }}
             className="ml-2 p-1 rounded-full transition-colors"
@@ -113,7 +111,7 @@ const ThemeNotification = () => {
             <FaTimes className="text-xs opacity-70 hover:opacity-100 transition-opacity" />
           </motion.button>
 
-          {/* Progress bar */}
+         
           <motion.div
             className="absolute bottom-0 left-0 h-1 bg-[#3de58f] rounded-b-lg"
             initial={{ width: "100%" }}
